@@ -1940,6 +1940,27 @@ SELECT_TYPES = [
 
 SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
     GrowattModbusSensorEntityDescription(
+        name="VPP Protocol Version VPP",
+        key="vpp_protocol_version_vpp",
+        register=30099,
+        scale=1,
+        register_data_type=REGISTER_U16,
+        allowedtypes=ALL_GEN_GROUP, # to be checked
+        entity_category=EntityCategory.DIAGNOSTIC,
+        icon="mdi:information",
+        internal=True,
+    ),
+    GrowattModbusSensorEntityDescription(
+        key="vpp_status",
+        register=30100,
+        scale={
+            0: "Disabled",
+            1: "Enabled",
+        },
+        allowedtypes=GEN3 | GEN4,
+        internal=True,
+    ),
+    GrowattModbusSensorEntityDescription(
         key="vpp_ac_charge_max_power",
         register=30215,
         scale=0.1,
@@ -1955,16 +1976,6 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         register_data_type=REGISTER_U16,
         allowedtypes=GEN4 | HYBRID,
         icon="mdi:battery-charging-high",
-        internal=True,
-    ),
-    GrowattModbusSensorEntityDescription(
-        key="vpp_status",
-        register=30100,
-        scale={
-            0: "Disabled",
-            1: "Enabled",
-        },
-        allowedtypes=GEN3 | GEN4,
         internal=True,
     ),
     GrowattModbusSensorEntityDescription(
