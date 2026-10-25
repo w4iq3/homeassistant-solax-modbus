@@ -9975,7 +9975,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         register_type=REG_INPUT,
         register_data_type=REGISTER_S32,
         scan_group=SCAN_GROUP_FAST,
-        scale=1,
+        scale=0.1,
         allowedtypes=HYBRID | GEN3 | GEN4,  # to be checked
         icon="mdi:battery",
     ),
