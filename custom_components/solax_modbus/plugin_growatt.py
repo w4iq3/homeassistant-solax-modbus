@@ -2186,7 +2186,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
             7: "7, ?",
         },
         allowedtypes=GEN3 | GEN4 | HYBRID,
-        entity_registry_enabled_default=True,
+        internal=True,
     ),
     GrowattModbusSensorEntityDescription(
         key="time_2_mode_vpp",
@@ -2203,7 +2203,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
             7: "7, ?",
         },
         allowedtypes=GEN3 | GEN4 | HYBRID,
-        entity_registry_enabled_default=True,
+        internal=True,
     ),
     GrowattModbusSensorEntityDescription(
         key="time_2_begin_time_vpp",
