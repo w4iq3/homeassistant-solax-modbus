@@ -2174,7 +2174,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
     GrowattModbusSensorEntityDescription(
         key="time_1_mode_vpp",
         register=30380,
-        register_data_type=REGISTER_U8L,
+        register_data_type=REGISTER_U16,
         scale={
             0: "Load First",
             1: "Battery/Grid First",
@@ -2191,7 +2191,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
     GrowattModbusSensorEntityDescription(
         key="time_2_mode_vpp",
         register=30381,
-        register_data_type=REGISTER_U8L,
+        register_data_type=REGISTER_U16,
         scale={
             0: "Load First",
             1: "Battery/Grid First",
