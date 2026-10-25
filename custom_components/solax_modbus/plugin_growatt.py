@@ -1298,8 +1298,8 @@ SELECT_TYPES = [
         register_data_type=REGISTER_U16,
         option_dict={
             0: "Load First",
-            1: "Battery/Grid First",
-            2: "Battery/Grid First",
+            1: "Battery/Grid First (1)",
+            2: "Battery/Grid First (2)",
             3: "PV Only",
             4: "Idle Charging",
             5: "5, ?",
@@ -1318,8 +1318,8 @@ SELECT_TYPES = [
         register_data_type=REGISTER_U16,
         option_dict={
             0: "Load First",
-            1: "Battery/Grid First",
-            2: "Battery/Grid First",
+            1: "Battery/Grid First (1)",
+            2: "Battery/Grid First (2)",
             3: "PV Only",
             4: "Idle Charging",
             5: "5, ?",
@@ -2177,8 +2177,8 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         register_data_type=REGISTER_U16,
         scale={
             0: "Load First",
-            1: "Battery/Grid First",
-            2: "Battery/Grid First",
+            1: "Battery/Grid First (1)",
+            2: "Battery/Grid First (2)",
             3: "PV Only",
             4: "Idle Charging",
             5: "5, ?",
