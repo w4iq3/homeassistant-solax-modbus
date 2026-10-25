@@ -166,6 +166,19 @@ class GrowattModbusTimeEntityDescription(BaseModbusTimeEntityDescription):
 
 
 # ====================================== Computed value functions  =================================================
+def value_function_minutes_to_time(initval: int, descr: Any, datadict: dict[str, Any]) -> str:
+    """Register holds minutes after midnight (0-1440): 60 -> '01:00'."""
+    minutes = max(0, min(int(initval), 1440))
+    return f"{minutes // 60:02}:{minutes % 60:02}"
+
+# Time entity options for registers holding minutes after midnight: payload = hours * 60 + minutes.
+# 1440 ('24:00') is left out because a Home Assistant time entity cannot represent it.
+TIME_OPTIONS_MINUTES_AFTER_MIDNIGHT: dict[int, str] = {h * 60 + m: f"{h:02}:{m:02}" for h in range(0, 24) for m in range(0, 60)}
+
+def minutes_to_time(minutes: int) -> str:
+    minutes = max(0, min(int(minutes), 1440))
+    return f"{minutes // 60:02}:{minutes % 60:02}"
+
 def time_to_int(time_str: str | None) -> int:
     if time_str is None:
         time_str = "00:00"
@@ -2046,6 +2059,20 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
             0: "Disabled",
             1: "Enabled",
         },
+        allowedtypes=GEN3 | GEN4 | HYBRID,
+        internal=True,
+    ),
+    GrowattModbusSensorEntityDescription(
+        key="time_1_start_time_vpp",
+        register=30412,
+        scale=value_function_minutes_to_time,
+        allowedtypes=GEN3 | GEN4 | HYBRID,
+        internal=True,
+    ),
+        GrowattModbusSensorEntityDescription(
+        key="time_1_end_time_vpp",
+        register=30413,
+        scale=value_function_minutes_to_time,
         allowedtypes=GEN3 | GEN4 | HYBRID,
         internal=True,
     ),
@@ -10330,6 +10357,26 @@ TIME_TYPES = [
         entity_category=EntityCategory.CONFIG,
         entity_registry_enabled_default=False,
         icon="mdi:battery-clock",
+    ),
+    GrowattModbusTimeEntityDescription(
+        name="Time 1 Start Time VPP",
+        key="time_1_start_time_vpp",
+        register=30412,
+        option_dict=TIME_OPTIONS_MINUTES_AFTER_MIDNIGHT,
+        write_method=WRITE_SINGLE_MODBUS,
+        allowedtypes=GEN3 | GEN4 | HYBRID,
+        entity_category=EntityCategory.CONFIG,
+        icon="mdi:clock-start",
+    ),
+        GrowattModbusTimeEntityDescription(
+        name="Time 1 End Time VPP",
+        key="time_1_end_time_vpp",
+        register=30413,
+        option_dict=TIME_OPTIONS_MINUTES_AFTER_MIDNIGHT,
+        write_method=WRITE_SINGLE_MODBUS,
+        allowedtypes=GEN3 | GEN4 | HYBRID,
+        entity_category=EntityCategory.CONFIG,
+        icon="mdi:clock-start",
     ),
 ]
 
