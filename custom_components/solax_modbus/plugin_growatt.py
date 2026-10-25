@@ -837,6 +837,29 @@ NUMBER_TYPES = [
     #
     ###
     GrowattModbusNumberEntityDescription(
+        name="Active Power Limit VPP",
+        key="active_power_limit_vpp",
+        register=30151,
+        fmt="i",
+        native_min_value=0,
+        native_max_value=100,
+        native_step=1,
+        native_unit_of_measurement=PERCENTAGE,
+        allowedtypes=ALL_GEN_GROUP,
+    ),
+    GrowattModbusNumberEntityDescription(
+    # not persistent - lowest of 30151 and 30152 is taken
+        name="Active Power Limit 2 VPP",
+        key="active_power_limit_2_vpp",
+        register=30152,
+        fmt="i",
+        native_min_value=0,
+        native_max_value=100,
+        native_step=1,
+        native_unit_of_measurement=PERCENTAGE,
+        allowedtypes=ALL_GEN_GROUP,
+    ),
+    GrowattModbusNumberEntityDescription(
         # Persistent value, only used when 30410 is enabled
         name="VPP AC Charge Max Power",
         key="vpp_ac_charge_max_power",
@@ -1958,6 +1981,18 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
             1: "Enabled",
         },
         allowedtypes=GEN3 | GEN4,
+        internal=True,
+    ),
+        GrowattModbusSensorEntityDescription(
+        key="active_power_limit_vpp",
+        register=30151,
+        allowedtypes=ALL_GEN_GROUP,
+        internal=True,
+    ),
+    GrowattModbusSensorEntityDescription(
+        key="active_power_limit_2_vpp",
+        register=30152,
+        allowedtypes=ALL_GEN_GROUP,
         internal=True,
     ),
     GrowattModbusSensorEntityDescription(
