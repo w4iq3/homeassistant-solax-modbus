@@ -164,16 +164,17 @@ class GrowattModbusSensorEntityDescription(BaseModbusSensorEntityDescription):
 class GrowattModbusTimeEntityDescription(BaseModbusTimeEntityDescription):
     allowedtypes: int = ALLDEFAULT  # maybe 0x0000 (nothing) is a better default choice
 
+# ====================================== Dictionaries =============================================================
+
+# Time entity options for registers holding minutes after midnight: payload = hours * 60 + minutes.
+# 1440 ('24:00') is left out because a Home Assistant time entity cannot represent it.
+TIME_OPTIONS_MINUTES_AFTER_MIDNIGHT: dict[int, str] = {h * 60 + m: f"{h:02}:{m:02}" for h in range(0, 24) for m in range(0, 60)}
 
 # ====================================== Computed value functions  =================================================
 def value_function_minutes_to_time(initval: int, descr: Any, datadict: dict[str, Any]) -> str:
     """Register holds minutes after midnight (0-1440): 60 -> '01:00'."""
     minutes = max(0, min(int(initval), 1440))
     return f"{minutes // 60:02}:{minutes % 60:02}"
-
-# Time entity options for registers holding minutes after midnight: payload = hours * 60 + minutes.
-# 1440 ('24:00') is left out because a Home Assistant time entity cannot represent it.
-TIME_OPTIONS_MINUTES_AFTER_MIDNIGHT: dict[int, str] = {h * 60 + m: f"{h:02}:{m:02}" for h in range(0, 24) for m in range(0, 60)}
 
 def minutes_to_time(minutes: int) -> str:
     minutes = max(0, min(int(minutes), 1440))
