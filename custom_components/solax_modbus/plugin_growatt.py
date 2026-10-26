@@ -632,6 +632,15 @@ def value_function_inverter_module(initval: int, descr: Any, datadict: dict[str,
     hexStr = f"{initval:08x}"
     return ("".join(f"{letter}{digit}" for letter, digit in zip("ABDTPUMS", hexStr, strict=False))).upper()
 
+def value_function_pv_power_1_vpp(initval, descr, datadict):
+    voltage = datadict.get("pv_voltage_1_vpp")
+    current = datadict.get("pv_current_1_vpp")
+    if voltage is None or current is None:
+        return None
+    try:
+        return round(float(voltage) * float(current), 0)
+    except (ValueError, TypeError):
+        return None
 
 # ================================= Button Declarations ============================================================
 
@@ -2177,6 +2186,21 @@ SELECT_TYPES = [
 # ================================= Sensor Declarations ============================================================
 
 SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
+    GrowattModbusSensorEntityDescription(
+        name="PV Power 1 VPP",
+        key="pv_power_1_vpp",
+        native_unit_of_measurement=UnitOfPower.WATT,
+        device_class=SensorDeviceClass.POWER,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_function=value_function_pv_power_1_vpp,
+        depends_on=[
+            "pv_current_1_vpp",
+            "pv_voltage_1_vpp",
+        ],
+        scan_group=SCAN_GROUP_FAST,
+        allowedtypes=ALL_GEN_GROUP, # to be checked
+        icon="mdi:solar-power-variant",
+),
     GrowattModbusSensorEntityDescription(
         name="VPP Protocol Version VPP",
         key="vpp_protocol_version_vpp",
