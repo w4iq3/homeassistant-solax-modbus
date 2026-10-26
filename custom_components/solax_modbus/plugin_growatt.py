@@ -641,6 +641,26 @@ def value_function_pv_power_1_vpp(initval, descr, datadict):
         return round(float(voltage) * float(current), 0)
     except (ValueError, TypeError):
         return None
+        
+def value_function_pv_power_2_vpp(initval, descr, datadict):
+    voltage = datadict.get("pv_voltage_2_vpp")
+    current = datadict.get("pv_current_2_vpp")
+    if voltage is None or current is None:
+        return None
+    try:
+        return round(float(voltage) * float(current), 0)
+    except (ValueError, TypeError):
+        return None
+
+def value_function_pv_power_3_vpp(initval, descr, datadict):
+    voltage = datadict.get("pv_voltage_3_vpp")
+    current = datadict.get("pv_current_3_vpp")
+    if voltage is None or current is None:
+        return None
+    try:
+        return round(float(voltage) * float(current), 0)
+    except (ValueError, TypeError):
+        return None
 
 # ================================= Button Declarations ============================================================
 
@@ -2196,6 +2216,36 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         depends_on=[
             "pv_current_1_vpp",
             "pv_voltage_1_vpp",
+        ],
+        scan_group=SCAN_GROUP_FAST,
+        allowedtypes=ALL_GEN_GROUP, # to be checked
+        icon="mdi:solar-power-variant",
+),
+    GrowattModbusSensorEntityDescription(
+        name="PV Power 2 VPP",
+        key="pv_power_2_vpp",
+        native_unit_of_measurement=UnitOfPower.WATT,
+        device_class=SensorDeviceClass.POWER,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_function=value_function_pv_power_2_vpp,
+        depends_on=[
+            "pv_current_2_vpp",
+            "pv_voltage_2_vpp",
+        ],
+        scan_group=SCAN_GROUP_FAST,
+        allowedtypes=ALL_GEN_GROUP, # to be checked
+        icon="mdi:solar-power-variant",
+),
+    GrowattModbusSensorEntityDescription(
+        name="PV Power 3 VPP",
+        key="pv_power_3_vpp",
+        native_unit_of_measurement=UnitOfPower.WATT,
+        device_class=SensorDeviceClass.POWER,
+        state_class=SensorStateClass.MEASUREMENT,
+        value_function=value_function_pv_power_3_vpp,
+        depends_on=[
+            "pv_current_3_vpp",
+            "pv_voltage_3_vpp",
         ],
         scan_group=SCAN_GROUP_FAST,
         allowedtypes=ALL_GEN_GROUP, # to be checked
