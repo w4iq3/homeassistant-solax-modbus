@@ -1331,7 +1331,6 @@ SELECT_TYPES = [
         },
         allowedtypes=HYBRID | GEN4,
         write_method=WRITE_SINGLE_MODBUS,
-        entity_category=EntityCategory.CONFIG,
         entity_registry_enabled_default=True,
         icon="mdi:chart-bell-curve-cumulative",
     ),
