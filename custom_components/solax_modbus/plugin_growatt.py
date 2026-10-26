@@ -1443,7 +1443,7 @@ SELECT_TYPES = [
         entity_registry_enabled_default=True,
         icon="mdi:run",
     ),
-        GrowattModbusSelectEntityDescription(
+    GrowattModbusSelectEntityDescription(
         name="Time 2 Mode VPP",        
         key="time_2_mode_vpp",
         register=30381,
