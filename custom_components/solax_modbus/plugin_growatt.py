@@ -891,10 +891,10 @@ NUMBER_TYPES = [
         allowedtypes=ALL_GEN_GROUP,
     ),
     GrowattModbusNumberEntityDescription(
-    # not persistent - lowest of 30151 and 30152 is taken
+    # not persistent - lowest of 30151 and 30154 is taken
         name="Active Power Limit 2 VPP",
         key="active_power_limit_2_vpp",
-        register=30152,
+        register=30154,
         fmt="i",
         native_min_value=0,
         native_max_value=100,
@@ -2291,7 +2291,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
     ),
     GrowattModbusSensorEntityDescription(
         key="active_power_limit_2_vpp",
-        register=30152,
+        register=30154,
         allowedtypes=ALL_GEN_GROUP,
         internal=True,
     ),
