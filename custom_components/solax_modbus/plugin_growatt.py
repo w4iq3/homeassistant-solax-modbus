@@ -147,7 +147,7 @@ class GrowattModbusNumberEntityDescription(BaseModbusNumberEntityDescription):
 
 
 @dataclass(kw_only=True, frozen=True)
-class GrowattModbustityDescription(BaseModbustityDescription):
+class GrowattModbusSelectEntityDescription(BaseModbusSelectEntityDescription):
     allowedtypes: int = ALLDEFAULT  # maybe 0x0000 (nothing) is a better default choice
 
 
