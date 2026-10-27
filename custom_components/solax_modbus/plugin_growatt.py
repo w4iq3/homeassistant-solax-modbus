@@ -10273,20 +10273,6 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         allowedtypes=ALL_GEN_GROUP,  # to be checked
     ),
     GrowattModbusSensorEntityDescription(
-        name="Reactive Power Inverter VPP",
-        key="reactive_power_inverter_vpp",
-        native_unit_of_measurement=UnitOfReactivePower.VOLT_AMPERE_REACTIVE,
-        device_class=SensorDeviceClass.REACTIVE_POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        register=31102,
-        register_type=REG_INPUT,
-        register_data_type=REGISTER_S32,
-        scan_group=SCAN_GROUP_FAST,
-        scale=0.1,
-        rounding=1,
-        allowedtypes=ALL_GEN_GROUP,  # to be checked
-    ),
-    GrowattModbusSensorEntityDescription(
         name="Battery Combined Power VPP",
         key="battery_combined_power_vpp",
         native_unit_of_measurement=UnitOfPower.WATT,
