@@ -147,7 +147,7 @@ class GrowattModbusNumberEntityDescription(BaseModbusNumberEntityDescription):
 
 
 @dataclass(kw_only=True, frozen=True)
-class GrowattModbusSelectEntityDescription(BaseModbusSelectEntityDescription):
+class GrowattModbustityDescription(BaseModbustityDescription):
     allowedtypes: int = ALLDEFAULT  # maybe 0x0000 (nothing) is a better default choice
 
 
@@ -1522,6 +1522,17 @@ SELECT_TYPES = [
         icon="mdi:clock-check",
     ),
     GrowattModbusSelectEntityDescription(
+        name="VPP Default Mode",
+        key="vpp_default_mode",
+        register=30476,
+        option_dict={0: "Load First", 1: "Battery First", 2: "Grid First"},
+        allowedtypes=HYBRID | GEN4,
+        write_method=WRITE_SINGLE_MODBUS,
+        entity_category=EntityCategory.CONFIG,
+        entity_registry_enabled_default=True,
+        icon="mdi:battery-clock",
+    ),
+    GrowattModbusSelectEntityDescription(
         name="Inverter Switch",
         key="inverter_switch",
         register=0,
@@ -2500,7 +2511,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         allowedtypes=GEN4 | HYBRID,
         internal=True,
     ),
-        GrowattModbusSensorEntityDescription(
+    GrowattModbusSensorEntityDescription(
         key="time_2_end_time_vpp",
         register=30416,
         scale=value_function_minutes_to_time,
@@ -2514,6 +2525,28 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         allowedtypes=GEN4 | HYBRID,
         scale=1,
         internal=True,
+    ),
+    GrowattModbusSensorEntityDescription(
+        name="VPP Power (read)",
+        key="vpp_power_read",
+        register=30474,
+        register_type=REG_HOLDING,
+        register_data_type=REGISTER_S16,
+        native_unit_of_measurement=PERCENTAGE,
+        state_class=SensorStateClass.MEASUREMENT,
+        allowedtypes=HYBRID | GEN4,
+        icon="mdi:battery-sync",
+    ),
+    GrowattModbusSensorEntityDescription(
+        key="vpp_default_mode",
+        register=30476,
+        register_type=REG_HOLDING,
+        register_data_type=REGISTER_U16,
+        scale={0: "Load First", 1: "Battery First", 2: "Grid First"},
+        allowedtypes=HYBRID | GEN4,
+        entity_category=EntityCategory.CONFIG,
+        icon="mdi:battery-clock",
+        internal="true"
     ),
     GrowattModbusSensorEntityDescription(
         name="Battery SOH",
