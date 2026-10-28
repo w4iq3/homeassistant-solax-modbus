@@ -10466,10 +10466,9 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         rounding=1,
         allowedtypes=ALL_GEN_GROUP,  # to be checked
     ),
-    # 31120-31121: Total energy to users (UINT32, 0.1 kWh)
     GrowattModbusSensorEntityDescription(
-        name="Total Energy To Users VPP",
-        key="total_energy_to_users_vpp",
+        name="Total Energy To Load VPP",
+        key="total_energy_to_load_vpp",
         native_unit_of_measurement=UnitOfEnergy.KILO_WATT_HOUR,
         device_class=SensorDeviceClass.ENERGY,
         state_class=SensorStateClass.TOTAL_INCREASING,
