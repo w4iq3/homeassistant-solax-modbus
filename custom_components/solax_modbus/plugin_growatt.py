@@ -10155,6 +10155,50 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         allowedtypes=ALL_GEN_GROUP,  # to be checked
         icon="mdi:run",
     ),
+        GrowattModbusSensorEntityDescription(
+        name="Fault Master Code VPP",
+        key="fault_master_code_vpp",
+        register=31005,
+        register_type=REG_INPUT,
+        register_data_type=REGISTER_U16,
+        scan_group=SCAN_GROUP_MEDIUM,
+        entity_category=EntityCategory.DIAGNOSTIC,
+        allowedtypes=ALL_GEN_GROUP,  # to be checked
+        icon="mdi:alert-circle-outline",
+    ),
+    GrowattModbusSensorEntityDescription(
+        name="Fault Sub Code VPP",
+        key="fault_sub_code_vpp",
+        register=31006,
+        register_type=REG_INPUT,
+        register_data_type=REGISTER_U16,
+        scan_group=SCAN_GROUP_MEDIUM,
+        entity_category=EntityCategory.DIAGNOSTIC,
+        allowedtypes=ALL_GEN_GROUP,  # to be checked
+        icon="mdi:alert-circle-outline",
+    ),
+    GrowattModbusSensorEntityDescription(
+        name="Protection Master Code VPP",
+        key="protection_master_code_vpp",
+        register=31007,
+        register_type=REG_INPUT,
+        register_data_type=REGISTER_U16,
+        scan_group=SCAN_GROUP_MEDIUM,
+        entity_category=EntityCategory.DIAGNOSTIC,
+        allowedtypes=ALL_GEN_GROUP,  # to be checked
+        icon="mdi:shield-alert-outline",
+    ),
+    GrowattModbusSensorEntityDescription(
+        name="Protection Sub Code VPP",
+        key="protection_sub_code_vpp",
+        register=31008,
+        register_type=REG_INPUT,
+        register_data_type=REGISTER_U16,
+        scan_group=SCAN_GROUP_MEDIUM,
+        entity_category=EntityCategory.DIAGNOSTIC,
+        allowedtypes=ALL_GEN_GROUP,  # to be checked
+        icon="mdi:shield-alert-outline",
+    ),
     GrowattModbusSensorEntityDescription(
         name="PV Voltage 1 VPP",
         key="pv_voltage_1_vpp",
