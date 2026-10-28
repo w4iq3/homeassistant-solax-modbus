@@ -10589,7 +10589,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         register_data_type=REGISTER_U32,
         scan_group=SCAN_GROUP_MEDIUM,
         scale=0.1,
-        rounding=1,,
+        rounding=1,
         entity_category=EntityCategory.DIAGNOSTIC,
         allowedtypes=ALL_GEN_GROUP,  # to be checked
     ),
