@@ -931,8 +931,8 @@ NUMBER_TYPES = [
     ),
     GrowattModbusNumberEntityDescription(
         # Persistent value, only used when 30410 is enabled
-        name="VPP AC Charge Max Power",
-        key="vpp_ac_charge_max_power",
+        name="AC Charge Max Power VPP",
+        key="ac_charge_max_power_vpp",
         register=30215,
         register_data_type=REGISTER_U16,
         fmt="i",
@@ -950,8 +950,8 @@ NUMBER_TYPES = [
     ),
     GrowattModbusNumberEntityDescription(
         # Non persistent value to limit EEPROM writes, only used when 30410 is enabled. Lowest value of 30215 and 20316 is taken.
-        name="VPP AC Charge Max Power 2",
-        key="vpp_ac_charge_max_power_2",
+        name="AC Charge Max Power 2 VPP",
+        key="ac_charge_max_power_2_vpp",
         register=30216,
         register_data_type=REGISTER_U16,
         fmt="i",
@@ -1033,7 +1033,7 @@ NUMBER_TYPES = [
     ),
     GrowattModbusNumberEntityDescription(
         name="VPP Time",
-        key="vpp_time",
+        key="vpp_time_vpp",
         register=30408,
         fmt="i",
         native_min_value=0,
@@ -1047,7 +1047,7 @@ NUMBER_TYPES = [
     ),
     GrowattModbusNumberEntityDescription(
         name="VPP Power",
-        key="vpp_power",
+        key="vpp_power_vpp",
         register=30409,
         fmt="i",
         native_min_value=-100,
@@ -1401,7 +1401,7 @@ SELECT_TYPES = [
     ###
     GrowattModbusSelectEntityDescription(
         name="VPP Status",
-        key="vpp_status",
+        key="vpp_status_vpp",
         register=30100,
         option_dict={
             0: "Disabled",
@@ -1482,7 +1482,7 @@ SELECT_TYPES = [
     ),
     GrowattModbusSelectEntityDescription(
         name="VPP Remote Control",
-        key="vpp_remote_control",
+        key="vpp_remote_control_vpp",
         register=30407,
         option_dict={
             0: "Disabled",
@@ -1494,8 +1494,8 @@ SELECT_TYPES = [
         icon="mdi:dip-switch",
     ),
     GrowattModbusSelectEntityDescription(
-        name="VPP Allow AC charging",
-        key="vpp_allow_ac_charging",
+        name="Allow AC charging VPP",
+        key="allow_ac_charging_vpp",
         register=30410,
         register_data_type=REGISTER_U16,
         option_dict={
@@ -1520,7 +1520,7 @@ SELECT_TYPES = [
     ),
     GrowattModbusSelectEntityDescription(
         name="VPP Default Mode",
-        key="vpp_default_mode",
+        key="vpp_default_mode_vpp",
         register=30476,
         option_dict={0: "Load First", 1: "Battery First", 2: "Grid First"},
         allowedtypes=HYBRID | GEN4,
@@ -2271,7 +2271,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         internal=True,
     ),
     GrowattModbusSensorEntityDescription(
-        key="vpp_status",
+        key="vpp_status_vpp",
         register=30100,
         scale={
             0: "Disabled",
@@ -2327,7 +2327,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         internal=True,
     ),
     GrowattModbusSensorEntityDescription(
-        key="vpp_ac_charge_max_power",
+        key="ac_charge_max_power_vpp",
         register=30215,
         scale=0.1,
         register_data_type=REGISTER_U16,
@@ -2336,7 +2336,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         internal=True,
     ),
     GrowattModbusSensorEntityDescription(
-        key="vpp_ac_charge_max_power_2",
+        key="ac_charge_max_power_2_vpp",
         register=30216,
         scale=0.1,
         register_data_type=REGISTER_U16,
@@ -2402,7 +2402,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         internal=True,
     ),
     GrowattModbusSensorEntityDescription(
-        key="vpp_remote_control",
+        key="vpp_remote_control_vpp",
         register=30407,
         scale={
             0: "Disabled",
@@ -2412,14 +2412,14 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         internal=True,
     ),
     GrowattModbusSensorEntityDescription(
-        key="vpp_time",
+        key="vpp_time_vpp",
         register=30408,
         allowedtypes=GEN3 | GEN4,
         scale=1,
         internal=True,
     ),
     GrowattModbusSensorEntityDescription(
-        key="vpp_power",
+        key="vpp_power_vpp",
         register=30409,
         register_data_type=REGISTER_S16,
         allowedtypes=GEN3 | GEN4,
@@ -2427,7 +2427,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         internal=True,
     ),
     GrowattModbusSensorEntityDescription(
-        key="vpp_allow_ac_charging",
+        key="allow_ac_charging_vpp",
         register=30410,
         register_data_type=REGISTER_U8L,
         scale={
@@ -2525,7 +2525,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
     ),
     GrowattModbusSensorEntityDescription(
         name="VPP Power (read)",
-        key="vpp_power_read",
+        key="vpp_power_read_vpp",
         register=30474,
         register_type=REG_HOLDING,
         register_data_type=REGISTER_S16,
@@ -2535,7 +2535,7 @@ SENSOR_TYPES: list[GrowattModbusSensorEntityDescription] = [
         icon="mdi:battery-sync",
     ),
     GrowattModbusSensorEntityDescription(
-        key="vpp_default_mode",
+        key="vpp_default_mode_vpp",
         register=30476,
         register_type=REG_HOLDING,
         register_data_type=REGISTER_U16,
