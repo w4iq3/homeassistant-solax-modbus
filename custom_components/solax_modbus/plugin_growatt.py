@@ -108,7 +108,7 @@ VPP = 0x2000000
 # Set when the inverter does NOT answer the VPP protocol version register. Use it on the non-VPP twin of an
 # entity (e.g. active_power_limit) so only one of the two is created. VPP and NO_VPP are one group.
 NO_VPP = 0x4000000
-ALL_VPP_GROUP = VPP
+ALL_VPP_GROUP = VPP | NO_VPP
 
 VPP_PROTOCOL_VERSION_REGISTER = 30099
 VPP_MIN_PROTOCOL_VERSION = 205  # 0 or a read error means no VPP support
